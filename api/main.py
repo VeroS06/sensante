@@ -1,6 +1,8 @@
 # api/main.py
 # API FastAPI pour SenSante - Assistant pré-diagnostic médical
 
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 import joblib
@@ -70,8 +72,9 @@ print(f"Classes : {list(model.classes_)}")
 
 SYSTEM_PROMPT = """Tu es un assistant medical senegalais.
 Tu recois un diagnostic et des donnees patient.
-Explique le resultat en francais simple,
-comme un medecin parlerait a son patient.
+Explique le resultat en melant le francais et le wolof simple,
+comme un medecin senegalais parlerait a son patient.
+Par exemple utilise : 'Ndax' (parce que), 'yaram' (corps), 'Dafa' (il/elle est).
 Sois rassurant mais recommande toujours une consultation medicale.
 Maximum 3 phrases.
 Ne fais JAMAIS de diagnostic toi-meme."""
@@ -198,3 +201,13 @@ def explain(data: ExplainInput):
         explication = f"Erreur lors de l'appel au LLM : {str(e)}"
 
     return ExplainOutput(explication=explication)
+
+    from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+# Servir le frontend comme fichier statique
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
+@app.get("/")
+def serve_frontend():
+    return FileResponse("frontend/index.html")
