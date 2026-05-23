@@ -1,7 +1,7 @@
 from huggingface_hub import HfApi
 
 api = HfApi()
-token = "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"
+token = ""
 repo_id = "verosylva06/sensante"
 
 # Supprimer les fichiers mal placés à la racine
