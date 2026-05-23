@@ -8,7 +8,7 @@ RUN pip install huggingface_hub
 
 COPY . .
 
-RUN python -c "from huggingface_hub import hf_hub_download; import os; os.makedirs('models', exist_ok=True); [hf_hub_download(repo_id='verosylva06/sensante', filename='models/'+f, repo_type='space', local_dir='.') for f in ['model.pkl','encoder_sexe.pkl','encoder_region.pkl','feature_cols.pkl']]"
+RUN python -c "from huggingface_hub import hf_hub_download; import os; os.makedirs('models', exist_ok=True); hf_hub_download(repo_id='verosylva06/sensante-mod\u00e8les', filename='mod\u00e8le.pkl', repo_type='dataset', local_dir='models/', token=None); hf_hub_download(repo_id='verosylva06/sensante-mod\u00e8les', filename='encoder_sexe.pkl', repo_type='dataset', local_dir='models/'); hf_hub_download(repo_id='verosylva06/sensante-mod\u00e8les', filename='encoder_region.pkl', repo_type='dataset', local_dir='models/'); hf_hub_download(repo_id='verosylva06/sensante-mod\u00e8les', filename='feature_cols.pkl', repo_type='dataset', local_dir='models/')"
 
 EXPOSE 8000
 

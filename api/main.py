@@ -63,7 +63,7 @@ app = FastAPI(
 
 # --- Charger le modele avec les encodeurs au démarrage ---
 print("Chargement du modèle...")
-model = joblib.load("models/model.pkl")
+model = joblib.load("models/modèle.pkl")
 le_sexe = joblib.load("models/encoder_sexe.pkl")
 le_region = joblib.load("models/encoder_region.pkl")
 feature_cols = joblib.load("models/feature_cols.pkl")
